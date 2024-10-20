@@ -9,18 +9,20 @@ import { useNavigate } from 'react-router-dom';
 import InputField from '../InputField/InputField';
 import Select from '../Select/Select';
 import routeNames from '../../../navigation/routeNames';
+import { User, UserRow } from '../../../types/user.types';
+import { formatDate } from '../../../utils/util-date';
+import StatusBadge from './StatusBadge';
 
-import './UserTable.scss'; // Add custom styles for your table
+import './UserTable.scss';
 
-interface UserRow {
-  organization: string;
-  username: string;
-  email: string;
-  phoneNumber: string;
-  dateJoined: string;
-  status: string;
-  handleViewDetails: () => void;
-}
+// Users
+// https://run.mocky.io/v3/49359cad-1020-4265-9ed1-e17118285de4
+// https://designer.mocky.io/manage/delete/49359cad-1020-4265-9ed1-e17118285de4/CKiDUGmxdwu06evi7BfMm9oQBlsh0yzIODie
+
+// User Stats
+// https://run.mocky.io/v3/e7e457ca-c4e2-4854-88eb-ad958e293f05
+// https://designer.mocky.io/manage/delete/e7e457ca-c4e2-4854-88eb-ad958e293f05/YrjwQo56MxxmPu3lEUZ8vLkSUyj1DJODc9Pt
+
 
 interface TColumn extends TableColumn<UserRow> {
   selector: (row: UserRow) => any | Selector<UserRow>;
@@ -72,7 +74,7 @@ const columns: TColumn[] = [
       <span>DATE JOINED</span>
       <ListFilterIcon style={{ width: '16px', height: '16px', marginLeft: '10px', marginBottom: '5px' }} />
     </div>),
-    selector: row => row.dateJoined,
+    selector: row => formatDate(row.dateJoined),
     sortable: false,
     grow: 6,
   },
@@ -102,7 +104,7 @@ const columns: TColumn[] = [
           >
             {open && (
               <div className="option-open">
-                <div onClick={() => row?.handleViewDetails()} className="item">
+                <div onClick={() => row?.handleViewDetails(row)} className="item">
                   <Eye />
 
                   <span>View Details</span>
@@ -127,36 +129,6 @@ const columns: TColumn[] = [
     sortable: false,
   },
 ];
-
-const data = [
-  { organization: 'Lendsqr', username: 'Adedeji', email: 'adedeji@lendsqr.com', phoneNumber: '08078903721', dateJoined: 'May 15, 2020 10:00 AM', status: 'Inactive' },
-  { organization: 'Irorun', username: 'Debby Ogana', email: 'debby2@irorun.com', phoneNumber: '08160780928', dateJoined: 'Apr 30, 2020 10:00 AM', status: 'Pending' },
-  { organization: 'Lendstar', username: 'Grace Effiom', email: 'grace@lendstar.com', phoneNumber: '07060780922', dateJoined: 'Apr 30, 2020 10:00 AM', status: 'Blacklisted' },
-  { organization: 'Lendsqr', username: 'Tosin Dokunmu', email: 'tosin@lendsqr.com', phoneNumber: '07003309226', dateJoined: 'Apr 10, 2020 10:00 AM', status: 'Pending' },
-  { organization: 'Lendstar', username: 'Grace Effiom', email: 'grace@lendstar.com', phoneNumber: '07060780922', dateJoined: 'Apr 30, 2020 10:00 AM', status: 'Active' },
-  { organization: 'Lendsqr', username: 'Tosin Dokunmu', email: 'tosin@lendsqr.com', phoneNumber: '08060780900', dateJoined: 'Apr 10, 2020 10:00 AM', status: 'Active' },
-  { organization: 'Lendstar', username: 'Grace Effiom', email: 'grace@lendstar.com', phoneNumber: '07060780922', dateJoined: 'Apr 30, 2020 10:00 AM', status: 'Blacklisted' },
-  { organization: 'Lendsqr', username: 'Tosin Dokunmu', email: 'tosin@lendsqr.com', phoneNumber: '08060780900', dateJoined: 'Apr 10, 2020 10:00 AM', status: 'Inactive' },
-];
-
-const StatusBadge = ({ status }: { status: string }) => {
-  const getStatusClass = (status: string) => {
-    switch (status) {
-      case 'Active':
-        return 'status-active';
-      case 'Pending':
-        return 'status-pending';
-      case 'Blacklisted':
-        return 'status-blacklisted';
-      case 'Inactive':
-        return 'status-inactive';
-      default:
-        return '';
-    }
-  };
-
-  return <span className={`status-badge ${getStatusClass(status)}`}>{status}</span>;
-};
 
 const customTableStyles: TableStyles = {
   table: {
@@ -209,7 +181,11 @@ const customTableStyles: TableStyles = {
   }
 }
 
-const UserTable: React.FC = () => {
+interface Props {
+  data: User[];
+}
+
+const UserTable: React.FC<Props> = ({ data }) => {
   const navigate = useNavigate();
 
   const render = useRef(false);
@@ -217,11 +193,11 @@ const UserTable: React.FC = () => {
 
   const memoData = useMemo(() => data.map((_data) => ({
     ..._data,
-    handleViewDetails() {
-      navigate(`${routeNames.users}/1234`)
+    handleViewDetails(row: UserRow) {
+      navigate(`${routeNames.users}/${row.id}`)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  })), []);
+  })), [data]);
 
   return (
     <div className='data-table'>

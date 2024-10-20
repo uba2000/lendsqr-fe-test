@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Star } from 'lucide-react'
 
 import UserDetailsAvatar from '../../../assets/images/user/details-avatar.svg?react'
+import queryKeys from '../../../queries/queryKeys'
+import { getUsers as getUsersAPI } from '../../../services/user.service'
+import useGetQuery from '../../../queries/useGetQuery'
 
 import './UserDetails.scss'
+import { useParams } from 'react-router-dom'
+import { User } from '../../../types/user.types'
+import { formatNumberWithCommas } from '../../../utils/util-number'
 
 const UserDetails: React.FC = () => {
+  const {
+    data: users,
+  } = useGetQuery({
+    apiService: getUsersAPI,
+    queryKey: queryKeys.getUsers,
+  });
+
+  const params = useParams();
+
+  const currentUser = useMemo<User>(() => {
+    return (users || []).find((user: User) => user.id === params.id)
+  }, [params.id, users]);
+
+  const shortId = useMemo(() => {
+    if (!currentUser) {
+      return ''
+    }
+
+    const splittedId = currentUser.id.split('-');
+
+    return splittedId[splittedId.length - 1];
+  }, [currentUser])
+
+  console.log({ currentUser });
+
   return (
     <div className='app__user-details-page'>
       <div className="header-section">
@@ -14,11 +45,15 @@ const UserDetails: React.FC = () => {
         </h2>
 
         <div className="header-buttons">
-          <div className="blacklist">
-            Blacklist User
-          </div>
+          {currentUser?.status === 'Active' && (
+            <div className="blacklist">
+              Blacklist User
+            </div>
+          )}
 
-          <div className="activate-user">Activate User</div>
+          {currentUser?.status !== 'Active' && (
+            <div className="activate-user">Activate User</div>
+          )}
         </div>
       </div>
 
@@ -29,9 +64,9 @@ const UserDetails: React.FC = () => {
           <div className="details-section">
             <div className="">
               <h3 className="main-text">
-                Grace Effiom
+                {currentUser?.username}
               </h3>
-              <p className="sub-text-1">LSQFf587g90</p>
+              <p className="sub-text-1">{shortId?.toUpperCase()}</p>
             </div>
 
             <div className="divider" />
@@ -51,9 +86,9 @@ const UserDetails: React.FC = () => {
 
             <div className="">
               <h3 className="main-text">
-                ₦200,000.00
+                ₦{formatNumberWithCommas(currentUser?.wallet_balance)}
               </h3>
-              <p className="sub-text-2">9912345678/Providus Bank</p>
+              <p className="sub-text-2">{currentUser?.bank_number}/{currentUser?.bank_name}</p>
             </div>
           </div>
         </div>
@@ -77,15 +112,15 @@ const UserDetails: React.FC = () => {
           <div style={{ columnGap: '100px' }} className="section-row">
             <div className="section-row-item">
               <div className="title">full Name</div>
-              <div className="value">Grace Effiom</div>
+              <div className="value">{currentUser?.username}</div>
             </div>
             <div className="section-row-item">
               <div className="title">Phone Number</div>
-              <div className="value">07060780922</div>
+              <div className="value">{currentUser?.phoneNumber}</div>
             </div>
             <div className="section-row-item">
               <div className="title">Email Address</div>
-              <div className="value">grace@gmail.com</div>
+              <div className="value">{currentUser.email}</div>
             </div>
             <div className="section-row-item">
               <div className="title">Bvn</div>

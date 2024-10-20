@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { Bell, ChevronDown, Search } from 'lucide-react';
 
 import Logo from '../../../assets/logo.svg?react'
@@ -27,6 +27,7 @@ import ClipboardList from '../../../assets/images/sidebar/clipboard-list.svg?rea
 import Avatar from '../../../assets/images/sidebar/avatar.svg?react';
 
 import './DashboardWrapper.scss'
+import routeNames from '../../../navigation/routeNames';
 
 const sidebarItems = [
   {
@@ -178,6 +179,8 @@ const sidebarItems = [
 ]
 
 const DashboardWrapper: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <main className='app__main-layout'>
       <div className="app__nav">
@@ -223,7 +226,7 @@ const DashboardWrapper: React.FC = () => {
               {section.children.map((child) => {
                 const Icon = child.icon;
                 return (
-                  <div className={`sidebar-item ${child.active ? 'active' : ''}`}>
+                  <div onClick={() => navigate(routeNames.users)} className={`sidebar-item ${child.active ? 'active' : ''}`}>
                     <Icon />
                     {child.title}
                   </div>
