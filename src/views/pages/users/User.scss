@@ -8,6 +8,16 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 26px;
 
+    @media (max-width: 1144px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (max-width: $medium) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
     .summary-card {
       box-shadow: 3px 5px 20px 0px #0000000a;
       border: 1px solid #213f7d0f;

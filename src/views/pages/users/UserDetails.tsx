@@ -59,7 +59,7 @@ const UserDetails: React.FC = () => {
 
       <div className="details-top-section">
         <div className="basic-details-section">
-          <UserDetailsAvatar />
+          <UserDetailsAvatar className='user-details-avatar' />
 
           <div className="details-section">
             <div className="">

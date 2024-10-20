@@ -25,9 +25,9 @@ import Sliders from '../../../assets/images/sidebar/sliders-h.svg?react';
 import BadgePercent from '../../../assets/images/sidebar/badge-percent.svg?react';
 import ClipboardList from '../../../assets/images/sidebar/clipboard-list.svg?react';
 import Avatar from '../../../assets/images/sidebar/avatar.svg?react';
+import routeNames from '../../../navigation/routeNames';
 
 import './DashboardWrapper.scss'
-import routeNames from '../../../navigation/routeNames';
 
 const sidebarItems = [
   {
@@ -184,7 +184,7 @@ const DashboardWrapper: React.FC = () => {
   return (
     <main className='app__main-layout'>
       <div className="app__nav">
-        <Logo />
+        <Logo style={{ minWidth: '145px' }} />
         <div className="search-section">
           <div className="search-section-container">
             <input type="text" placeholder='Search for anything' />

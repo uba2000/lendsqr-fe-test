@@ -18,7 +18,7 @@ const Login: React.FC = () => {
           <Logo />
         </div>
 
-        <LoginIllustration />
+        <LoginIllustration className='illustration' />
       </div>
       <div className="app__login-right-side">
         <div className="form-container">
