@@ -1,0 +1,144 @@
+.app__main-layout {
+  .app__nav {
+    height: 100px;
+    box-shadow: 3px 0px 20px 0px #0000000a;
+    display: flex;
+    align-items: center;
+    padding: 0 60px 0 30px;
+
+    .search-section {
+      flex: 1;
+      margin-left: 168.2px;
+
+      .search-section-container {
+        border: 1px solid #d3d9e5;
+        max-width: 400px;
+        display: flex;
+        overflow: hidden;
+        border-radius: 8px;
+
+        input {
+          padding: 12px 20px;
+          flex: 1;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 16.42px;
+          color: #878fa4;
+          border: none;
+          outline: none;
+        }
+
+        .button-wrapper {
+          width: 56px;
+
+          .button {
+            @include button-style();
+            border-radius: 0;
+          }
+        }
+      }
+    }
+
+    .menu-items {
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: 26px;
+        height: 26px;
+
+        &.avatar {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      .account {
+        margin-left: 30px;
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+
+        .name {
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 18.77px;
+          color: var(--primary-color);
+        }
+      }
+
+      .nav-item {
+        color: var(--primary-color);
+        margin-right: 47px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 18.75px;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .app__dashboar-layout {
+    display: flex;
+
+    .sidebar {
+      max-width: 283px;
+      overflow-y: auto;
+      width: 100%;
+      box-shadow: 0px 5px 20px 0px #0000000a;
+      height: calc(100vh - 100px);
+
+      .sidebar-item {
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+        padding: 10px 30px 11px;
+        cursor: pointer;
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 18.77px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        &.active {
+          padding: 10px 30px 11px;
+          color: var(--primary-color);
+          background-color: #f3fcfc;
+          border-left: 3px solid var(--secondary-color);
+        }
+
+        .item-title {
+          color: #7a8cb1;
+        }
+      }
+
+      .sidebar-section {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        .section-title {
+          padding: 10px 30px 11px;
+          margin-bottom: -10px;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 14.08px;
+        }
+      }
+    }
+
+    .main-section {
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      flex: 1;
+      background-color: #fbfbfb;
+      padding: 60px;
+    }
+  }
+}
