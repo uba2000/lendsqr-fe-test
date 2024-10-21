@@ -4,6 +4,7 @@ import InputField from '../../views/components/InputField/InputField';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
+console.log(React);
 // Mock props
 const mockOnChange = jest.fn();
 

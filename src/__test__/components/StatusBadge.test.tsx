@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import StatusBadge from '../../views/components/UserTable/StatusBadge';
 import '@testing-library/jest-dom';
 
+console.log(React);
 describe('StatusBadge Component', () => {
   it('renders Active status with correct class', () => {
     render(<StatusBadge status="Active" />);

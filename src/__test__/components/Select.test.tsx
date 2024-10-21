@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Select from '../../views/components/Select/Select'; // Adjust the import path based on your folder structure
 import '@testing-library/jest-dom';
 
+console.log(React);
 describe('Select Component', () => {
   const options = [
     { label: 'Option 1', value: 'option1' },

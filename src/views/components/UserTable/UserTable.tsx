@@ -96,7 +96,7 @@ const columns: TColumn[] = [
 
       return (
         <div className='table-cell-option'>
-          <EllipsisVertical style={{ cursor: "pointer" }} onClick={() => setOpen(true)} />
+          <EllipsisVertical role='button' style={{ cursor: "pointer" }} onClick={() => setOpen(true)} />
 
           <OutsideClickHandler
             disabled={!open}

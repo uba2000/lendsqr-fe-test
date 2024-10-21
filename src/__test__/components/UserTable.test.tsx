@@ -6,6 +6,8 @@ import UserTable from '../../views/components/UserTable/UserTable';
 import { User } from '../../types/user.types';
 import moment from 'moment';
 
+console.log(React);
+
 const mockNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
