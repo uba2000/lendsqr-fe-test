@@ -11,7 +11,7 @@ interface Props {
 
 const Select: React.FC<Props> = ({ options = [] }) => {
   return (
-    <select className='select-container'>
+    <select className='select-container' data-testid='select-field'>
       <option value="">Select</option>
       {options.map((option) => (
         <option value={option.value} key={option.value}>{option.label}</option>
