@@ -1,10 +1,11 @@
 import React from 'react'
 
 import { InputField } from '../../../components'
-import Logo from '../../../../assets/logo.svg?react'
-import LoginIllustration from '../../../../assets/images/pablo-sign-in 1.svg?react'
 import { useNavigate } from 'react-router-dom'
 import routeNames from '../../../../navigation/routeNames'
+// import Logo from '../../../../assets/logo.svg?react'
+import { ReactComponent as Logo } from '../../../../assets/logo.svg';
+import { ReactComponent as LoginIllustration } from '../../../../assets/images/pablo-sign-in 1.svg'
 
 import './Login.scss'
 

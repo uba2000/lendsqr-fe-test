@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Star } from 'lucide-react'
 
-import UserDetailsAvatar from '../../../assets/images/user/details-avatar.svg?react'
+import { ReactComponent as UserDetailsAvatar } from '../../../assets/images/user/details-avatar.svg'
 import queryKeys from '../../../queries/queryKeys'
 import { getUsers as getUsersAPI } from '../../../services/user.service'
 import useGetQuery from '../../../queries/useGetQuery'

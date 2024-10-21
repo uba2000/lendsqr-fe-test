@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 
-import UsersSummaryIcon from '../../../assets/images/user/users-summary.svg?react'
-import ActiveUsersIcon from '../../../assets/images/user/active-user.svg?react'
-import UsersLoansIcon from '../../../assets/images/user/users-loans.svg?react'
-import UsersSavingsIcon from '../../../assets/images/user/users-savings.svg?react'
+import { ReactComponent as UsersSummaryIcon } from '../../../assets/images/user/users-summary.svg'
+import { ReactComponent as ActiveUsersIcon } from '../../../assets/images/user/active-user.svg'
+import { ReactComponent as UsersLoansIcon } from '../../../assets/images/user/users-loans.svg'
+import { ReactComponent as UsersSavingsIcon } from '../../../assets/images/user/users-savings.svg'
 import UserTable from '../../components/UserTable/UserTable'
 import useGetQuery from '../../../queries/useGetQuery'
 import queryKeys from '../../../queries/queryKeys'
