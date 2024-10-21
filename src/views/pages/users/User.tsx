@@ -28,8 +28,6 @@ const User: React.FC = () => {
     queryKey: queryKeys.getUsersSummary,
   });
 
-  console.log({ users, users_summary });
-
   const activeUsers = useMemo(() => (users || []).reduce((accumulator: number, current: UserInterface) => {
     return current.status === "Active" ? accumulator + 1 : accumulator;
   }, 0), [users])

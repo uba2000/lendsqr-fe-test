@@ -63,10 +63,10 @@ const UserDetails: React.FC = () => {
 
           <div className="details-section">
             <div className="">
-              <h3 className="main-text">
+              <h3 className="main-text" data-testid="main-name-value">
                 {currentUser?.username}
               </h3>
-              <p className="sub-text-1">{shortId?.toUpperCase()}</p>
+              <p className="sub-text-1" data-testid="main-short-id">{shortId?.toUpperCase()}</p>
             </div>
 
             <div className="divider" />
@@ -85,10 +85,10 @@ const UserDetails: React.FC = () => {
             <div className="divider" />
 
             <div className="">
-              <h3 className="main-text">
+              <h3 className="main-text" data-testid="wallet-balance">
                 ₦{formatNumberWithCommas(currentUser?.wallet_balance)}
               </h3>
-              <p className="sub-text-2">{currentUser?.bank_number}/{currentUser?.bank_name}</p>
+              <p className="sub-text-2" data-testid="bank-details">{currentUser?.bank_number}/{currentUser?.bank_name}</p>
             </div>
           </div>
         </div>
@@ -111,16 +111,16 @@ const UserDetails: React.FC = () => {
 
           <div style={{ columnGap: '100px' }} className="section-row">
             <div className="section-row-item">
-              <div className="title">full Name</div>
-              <div className="value">{currentUser?.username}</div>
+              <div className="title" data-testid="personal-info-fullname">full Name</div>
+              <div className="value" data-testid="personal-info-fullname-value">{currentUser?.username}</div>
             </div>
             <div className="section-row-item">
-              <div className="title">Phone Number</div>
-              <div className="value">{currentUser?.phoneNumber}</div>
+              <div className="title" data-testid="personal-info-phone">Phone Number</div>
+              <div className="value" data-testid="personal-info-phone-value">{currentUser?.phoneNumber}</div>
             </div>
             <div className="section-row-item">
-              <div className="title">Email Address</div>
-              <div className="value">{currentUser.email}</div>
+              <div className="title" data-testid="personal-info-email">Email Address</div>
+              <div className="value" data-testid="personal-info-email-value">{currentUser.email}</div>
             </div>
             <div className="section-row-item">
               <div className="title">Bvn</div>
